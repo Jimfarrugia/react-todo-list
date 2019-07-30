@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Todos from './components/Todos';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
-  );
-}
+export default class App extends Component {
 
-export default App;
+  state = {
+    todos: [
+      {
+        id: 1,
+        title: "Take out the trash.",
+        completed: false
+      },
+      {
+        id: 2,
+        title: "Dinner with the wife.",
+        completed: false
+      },
+      {
+        id: 3,
+        title: "Meeting with the boss.",
+        completed: false
+      }
+    ]
+  }
+  render() {
+    return (
+      <div className="App">
+        <Todos todos={this.state.todos} />
+      </div>
+    );
+  }
+}
