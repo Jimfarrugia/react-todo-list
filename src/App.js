@@ -9,17 +9,17 @@ export default class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: 0,
         title: "Take out the trash.",
         completed: false
       },
       {
-        id: 2,
+        id: 1,
         title: "Dinner with the wife.",
         completed: true
       },
       {
-        id: 3,
+        id: 2,
         title: "Meeting with the boss.",
         completed: false
       }
@@ -44,12 +44,19 @@ export default class App extends Component {
     })
   }
 
+  // add todo
+  addTodo = (title) => {
+    const { todos } = this.state;
+    const newTodo = { id: todos[todos.length - 1].id + 1, title }
+    this.setState({ todos: [...this.state.todos, newTodo] })
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header />
-          <AddTodo />
+          <AddTodo addTodo={this.addTodo} />
           <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
         </div>
       </div>
